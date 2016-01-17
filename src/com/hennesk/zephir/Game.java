@@ -72,10 +72,9 @@ public class Game extends Canvas implements Runnable {
 				updates++;
 				delta--;
 			}
-			if (updates % 10 == 0) {
-				render();
-				frames++;
-			}//limit this to 1/10th of what the GPU will allow ~89fps
+			
+			render();
+			frames++;		
 			
 			if (System.currentTimeMillis() - timer > 1000) {
 				timer +=1000;
