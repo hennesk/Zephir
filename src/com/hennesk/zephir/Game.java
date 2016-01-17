@@ -21,7 +21,8 @@ public class Game extends Canvas implements Runnable {
 	public static int width = 300;
 	public static int height = width / 16*9;//162
 	public static int scale = 3;
-	
+
+	private String title = "Zephir";
 	private boolean running = true;
 	private Thread thread;
 	private JFrame frame;
@@ -57,18 +58,31 @@ public class Game extends Canvas implements Runnable {
 
 	public void run() {
 		long lastTime = System.nanoTime();
+		long timer = System.currentTimeMillis();
 		final double ns = 1000000000.0 / 60.0;
 		double delta = 0;
-		
+		int frames = 0;
+		int updates = 0;
 		while (running) {
 			long now = System.nanoTime();
 			delta += (now - lastTime) / ns;
 			lastTime = now;
 			while (delta >= 1) {
 				update();
+				updates++;
 				delta--;
 			}
-			render();
+			if (updates % 10 == 0) {
+				render();
+				frames++;
+			}//limit this to 1/10th of what the GPU will allow ~89fps
+			
+			if (System.currentTimeMillis() - timer > 1000) {
+				timer +=1000;
+				frame.setTitle(this.title+" | "+updates+ " ups " + frames + "fps");
+				updates = 0;
+				frames = 0;
+			}
 		}
 	}
 	public void update(){
@@ -99,7 +113,7 @@ public class Game extends Canvas implements Runnable {
 	public static void main(String[] args) {
 		Game game = new Game();
 		game.frame.setResizable(false);
-		game.frame.setTitle("Zephir");
+		game.frame.setTitle(game.title);
 		game.frame.add(game);
 		game.frame.pack();
 		game.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
