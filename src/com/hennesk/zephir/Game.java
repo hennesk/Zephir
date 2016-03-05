@@ -1,7 +1,6 @@
 package com.hennesk.zephir;
 
 import java.awt.Canvas;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
@@ -14,11 +13,10 @@ import com.hennesk.zephir.graphics.Screen;
 import com.hennesk.zephir.input.Keyboard;
 
 public class Game extends Canvas implements Runnable {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -1911000474969878048L;
 
+	private static final long serialVersionUID = -1911000474969878048L;	
+	private static final double NANOSECOND_MULTIPLIER = 1000000000.0 / 60.0;
+	
 	public static int width = 300;
 	public static int height = width / 16*9;//162
 	public static int scale = 3;
@@ -64,13 +62,15 @@ public class Game extends Canvas implements Runnable {
 	public void run() {
 		long lastTime = System.nanoTime();
 		long timer = System.currentTimeMillis();
-		final double ns = 1000000000.0 / 60.0;
+		
 		double delta = 0;
 		int frames = 0;
 		int updates = 0;
+		
+		requestFocus();
 		while (running) {
 			long now = System.nanoTime();
-			delta += (now - lastTime) / ns;
+			delta += (now - lastTime) / NANOSECOND_MULTIPLIER;
 			lastTime = now;
 			while (delta >= 1) {
 				update();
@@ -94,10 +94,22 @@ public class Game extends Canvas implements Runnable {
 	public void update(){
 		
 		key.update();
-		if (key.up) yloc--;
-		if (key.down) yloc++;
-		if (key.left) xloc--;
-		if (key.right) xloc++;
+		if (key.up) {
+			yloc++;
+			System.out.println("x,y = "+xloc+","+yloc);
+		}
+		if (key.down){
+			yloc--;
+			System.out.println("x,y = "+xloc+","+yloc);
+		}
+		if (key.left){
+			xloc++;
+			System.out.println("x,y = "+xloc+","+yloc);
+		}
+		if (key.right){
+			xloc--;
+			System.out.println("x,y = "+xloc+","+yloc);
+		}
 		
 		
 	}

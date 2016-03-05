@@ -10,8 +10,8 @@ public class SpriteSheet {
 	public final int SHEET_SIZE;
 	public int[] pixels;
 	
-	public static SpriteSheet terrain = new SpriteSheet("/textures/spritesheet.png",256);
-	//becuase we added res to the classpath we dont need to include res in the uri.
+	public static SpriteSheet terrain = new SpriteSheet("/textures/terrain.png",256);
+	//because we added res to the class path we don't need to include res in the URI.
 	public SpriteSheet(String path, int size) {
 		this.path = path;
 		this.SHEET_SIZE = size;
