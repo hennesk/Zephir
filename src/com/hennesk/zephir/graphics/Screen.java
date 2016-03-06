@@ -2,6 +2,8 @@ package com.hennesk.zephir.graphics;
 
 import java.util.Random;
 
+import com.hennesk.zephir.level.tile.Tile;
+
 public class Screen {
 
 	private int width;
@@ -38,6 +40,14 @@ public class Screen {
 			}
 		}
 	}
+	
+	public void renderTile(int xp, int yp, Tile tile){
+		//29
+		for (int y = 0; y < tile.sprite.SIZE; y++) {
+			int ya = y + yp;
+		}
+	}
+	
 	public void clear() {
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++) {
