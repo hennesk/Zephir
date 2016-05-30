@@ -42,9 +42,13 @@ public class Screen {
 	}
 	
 	public void renderTile(int xp, int yp, Tile tile){
-		//29
 		for (int y = 0; y < tile.sprite.SIZE; y++) {
-			int ya = y + yp;
+			int ya = y + yp;			
+			for (int x = 0; x < tile.sprite.SIZE; x++) {
+				int xa = x + xp;
+				if (xa < 0 || xa >= width || ya < 0 || ya >= width) break;//if tile were to exit viewable screen, stop drawing it
+				pixels[xa+ya*width] = tile.sprite.pixels[x+y*tile.sprite.SIZE];
+			}
 		}
 	}
 	
