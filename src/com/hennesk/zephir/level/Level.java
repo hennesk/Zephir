@@ -24,7 +24,10 @@ public void update(){
 	
 }
 public void render(int xPosition, int yPosition, Screen screen) {
-	
+	int x0 = xPosition >> 4;//same as div by 16, but much faster
+	int x1 = (xPosition + screen.width) >> 4;
+	int y0 = yPosition >> 4;
+	int y1 = (yPosition + screen.height) >> 4;
 }
 private void time() {
 	

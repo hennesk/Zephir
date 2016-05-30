@@ -6,8 +6,8 @@ import com.hennesk.zephir.level.tile.Tile;
 
 public class Screen {
 
-	private int width;
-	private int height;
+	public int width;
+	public int height;
 	
 	public int[] pixels;
 	public final int MAP_SIZE = 64;

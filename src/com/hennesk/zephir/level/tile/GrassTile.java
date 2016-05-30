@@ -10,7 +10,7 @@ public class GrassTile extends Tile {
 		// TODO Auto-generated constructor stub
 	}
 	public void render(int x, int y, Screen screen){
-		//
+		screen.renderTile(x, y, this);
 	}
 
 }
