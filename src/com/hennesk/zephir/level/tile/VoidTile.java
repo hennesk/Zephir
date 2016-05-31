@@ -3,14 +3,13 @@ package com.hennesk.zephir.level.tile;
 import com.hennesk.zephir.graphics.Screen;
 import com.hennesk.zephir.graphics.Sprite;
 
-public class GrassTile extends Tile {
+public class VoidTile extends Tile {
 
-	public GrassTile(Sprite sprite) {
+	public VoidTile(Sprite sprite) {
 		super(sprite);
-		// TODO Auto-generated constructor stub
 	}
+	
 	public void render(int x, int y, Screen screen){
-		screen.renderTile(x << 4, y << 4, this);//go from tile precision to pixel
+		screen.renderTile(x << 4, y << 4, this);
 	}
-
 }

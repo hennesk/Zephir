@@ -11,6 +11,8 @@ import javax.swing.JFrame;
 
 import com.hennesk.zephir.graphics.Screen;
 import com.hennesk.zephir.input.Keyboard;
+import com.hennesk.zephir.level.Level;
+import com.hennesk.zephir.level.RandomLevel;
 
 public class Game extends Canvas implements Runnable {
 
@@ -27,6 +29,7 @@ public class Game extends Canvas implements Runnable {
 	private JFrame frame;
 	private Screen screen;
 	private Keyboard key;
+	private Level level;//only have one loaded at a time
 	
 	private BufferedImage image = new BufferedImage(width,height, BufferedImage.TYPE_INT_RGB);
 	private int[] pixels = ((DataBufferInt) image.getRaster().getDataBuffer()).getData();
@@ -39,6 +42,7 @@ public class Game extends Canvas implements Runnable {
 		screen = new Screen(width,height);
 		frame = new JFrame();		
 		key = new Keyboard();
+		level = new RandomLevel(64,64);
 		
 		addKeyListener(key);
 	}
@@ -121,7 +125,7 @@ public class Game extends Canvas implements Runnable {
 		}
 		
 		screen.clear();
-		screen.render(xloc,yloc);
+		level.render(xloc,yloc,screen);
 		
 		for (int i = 0; i < pixels.length; i++) {
 			pixels[i] = screen.pixels[i];
